@@ -1,0 +1,3 @@
+rootProject.name = 'Curlew'
+
+include ':app'
