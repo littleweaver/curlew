@@ -12,11 +12,11 @@ class App extends Component {
 			compliments: [
 				{
 					id: 1,
-					body: "You're cute.",
+					body: "You’re cute.",
 				},
 				{
 					id: 2,
-					body: "You're also p smart",
+					body: "You’re also p smart",
 				}
 			],
 		}
