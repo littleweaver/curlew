@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import {
 	Text,
-	View
+	View,
+	Navigator,
 } from 'react-native'
+
+import * as Scenes from './scenes'
 
 class App extends Component {
 	constructor(props) {
@@ -19,6 +22,22 @@ class App extends Component {
 					body: "You’re also p smart",
 				}
 			],
+		}
+	}
+
+	handleRenderScene(route, navigator) {
+		const SceneComponent = Scenes[route.component]
+		return <SceneComponent
+			key={route.component}
+			navigator={navigator}
+		/>
+	}
+
+	configureScene(route, routeStack) {
+		if (route.component === 'Home') {
+			return Navigator.SceneConfigs.VerticalDownSwipeJump
+		} else {
+			return Navigator.SceneConfigs.VerticalUpSwipeJump
 		}
 	}
 
@@ -51,16 +70,12 @@ class App extends Component {
 	}
 
 	render() {
-		const { compliments } = this.state
-
 		return (
-			<View>
-				{compliments.map(compliment =>
-					<Text key={compliment.id}>
-						{compliment.id} {compliment.body}
-					</Text>
-				)}
-			</View>
+			<Navigator
+				initialRoute={{ component: 'Home' }}
+				renderScene={this.handleRenderScene.bind(this)}
+				configureScene={this.configureScene.bind(this)}
+			/>
 		)
 	}
 }
