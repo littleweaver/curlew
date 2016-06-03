@@ -30,11 +30,6 @@ class Manage extends Component {
 				<TouchableOpacity onPress={navigator.pop}>
 					<Text>Back</Text>
 				</TouchableOpacity>
-
-				<ListView
-					dataSource={this.state.complimentsDataSource}
-					renderRow={this.renderCompliment}
-				/>
 			</View>
 		)
 	}
