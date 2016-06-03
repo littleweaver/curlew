@@ -69,9 +69,16 @@ class App extends Component {
 
 	handleRenderScene(route, navigator) {
 		const SceneComponent = Scenes[route.component]
+
+		const childProps = {}
+		if (route.component === 'Manage') {
+			childProps.compliments = this.state.compliments
+		}
+
 		return <SceneComponent
 			key={route.component}
 			navigator={navigator}
+			{...childProps}
 		/>
 	}
 
