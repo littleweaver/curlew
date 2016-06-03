@@ -1,40 +1,60 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, { Component } from 'react';
+// @flow
+import React, { Component } from 'react'
 import {
 	AppRegistry,
 	StyleSheet,
 	Text,
+	TouchableHighlight,
 	View
-} from 'react-native';
+} from 'react-native'
 
 import App from './components/App'
 
 class Curlew extends Component {
-	render() {
-		return (
-			<View style={styles.container}>
-				<App />
-				<Text style={styles.welcome}>
-					Welcome to Curlew!
-				</Text>
-				<Text style={styles.instructions}>
-					To get started, edit index.ios.js
-				</Text>
-				<Text style={styles.instructions}>
-					Press Cmd+R to reload,{'\n'}
-					Cmd+D or shake for dev menu
-				</Text>
-				<Text style={styles.instructions}>
-					Hey Little Weavers!
-				</Text>
-			</View>
-		);
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			currentView: 'home',
+		}
+
+		this.boundChangeView = this.changeView.bind(this)
 	}
+
+	changeView(nextView) {
+		this.setState({ currentView: nextView })
+	}
+
+	render() {
+		return Views[this.state.currentView]({
+			changeView: this.boundChangeView,
+		})
+	}
+}
+
+const Views = {}
+Views.home = function({ changeView }) {
+	return (
+		<View style={styles.container}>
+			<Text style={styles.welcome}>
+				Curlew
+			</Text>
+
+			<TouchableHighlight onPress={changeView.bind(null, 'manage')}>
+				<Text>✚</Text>
+			</TouchableHighlight>
+		</View>
+	)
+}
+
+Views.manage = function({ changeView }) {
+	return (
+		<View style={styles.container}>
+			<TouchableHighlight onPress={changeView.bind(null, 'home')}>
+				<Text>Back</Text>
+			</TouchableHighlight>
+		</View>
+	)
 }
 
 const styles = StyleSheet.create({
@@ -49,11 +69,6 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		margin: 10,
 	},
-	instructions: {
-		textAlign: 'center',
-		color: '#333333',
-		marginBottom: 5,
-	},
-});
+})
 
-AppRegistry.registerComponent('Curlew', () => Curlew);
+AppRegistry.registerComponent('Curlew', () => Curlew)
