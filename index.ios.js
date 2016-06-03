@@ -5,6 +5,7 @@ import {
 	StyleSheet,
 	Text,
 	TouchableHighlight,
+	Navigator,
 	View
 } from 'react-native'
 
@@ -26,10 +27,30 @@ class Curlew extends Component {
 		this.setState({ currentView: nextView })
 	}
 
+	handleRenderScene(route, navigator) {
+		const SceneComponent = Scenes[route.component]
+		return <SceneComponent
+			key={route.component}
+			navigator={navigator}
+		/>
+	}
+
+	configureScene(route, routeStack) {
+		if (route.component === 'Home') {
+			return Navigator.SceneConfigs.VerticalDownSwipeJump
+		} else {
+			return Navigator.SceneConfigs.VerticalUpSwipeJump
+		}
+	}
+
 	render() {
-		return Scenes[this.state.currentView]({
-			changeView: this.boundChangeView,
-		})
+		return (
+			<Navigator
+				initialRoute={{ component: 'Home' }}
+				renderScene={this.handleRenderScene.bind(this)}
+				configureScene={this.configureScene.bind(this)}
+			/>
+		)
 	}
 }
 

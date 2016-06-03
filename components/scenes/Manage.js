@@ -1,18 +1,23 @@
 import React, { Component } from 'react'
 import {
-  View,
-  Text,
-  TouchableHighlight
+	View,
+	Text,
+	TouchableOpacity
 } from 'react-native'
 
+import * as Routes from '../Routes'
 import Styles from '../Styles'
 
-export default function Manage({ changeView }) {
-	return (
-		<View style={Styles.container}>
-			<TouchableHighlight onPress={changeView.bind(null, 'Home')}>
-				<Text>Back</Text>
-			</TouchableHighlight>
-		</View>
-	)
+export default class Manage extends Component {
+	render() {
+		const { navigator } = this.props
+
+		return (
+			<View style={Styles.container}>
+				<TouchableOpacity onPress={navigator.pop}>
+					<Text>Back</Text>
+				</TouchableOpacity>
+			</View>
+		)
+	}
 }

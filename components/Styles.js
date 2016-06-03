@@ -1,5 +1,5 @@
 import {
-  StyleSheet
+	StyleSheet
 } from 'react-native'
 
 const Styles = StyleSheet.create({

@@ -3,7 +3,7 @@ import Manage from './Manage'
 import Home from './Home'
 
 export {
-  Settings,
-  Manage,
-  Home
+	Settings,
+	Manage,
+	Home
 }
