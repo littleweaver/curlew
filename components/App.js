@@ -71,7 +71,7 @@ class App extends Component {
 		const SceneComponent = Scenes[route.component]
 
 		const childProps = {}
-		if (route.component === 'Manage') {
+		if (['Manage', 'Home'].includes(route.component)) {
 			childProps.compliments = this.state.compliments
 		}
 
