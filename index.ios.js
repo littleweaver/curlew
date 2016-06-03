@@ -12,10 +12,13 @@ import {
 	View
 } from 'react-native';
 
+import App from './components/App'
+
 class Curlew extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
+				<App />
 				<Text style={styles.welcome}>
 					Welcome to Curlew!
 				</Text>
