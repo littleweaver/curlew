@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Starter",
+    "status": "enabled",
+    "explicit": true,
+    "compliments": [
+      {
+        "body": "You are a sassy boss bitch.",
+        "author": "Feonix"
+      },
+      {
+        "body": "ur gr8",
+        "author": "Naomi"
+      },
+      {
+        "body": "foo",
+        "author": null
+      }
+    ]
+  }
+]

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {
+	AsyncStorage,
 	Text,
 	View,
 	Navigator,
@@ -7,22 +8,63 @@ import {
 
 import * as Scenes from './scenes'
 
+const StarterPacks = require('./packs.json')
+
 class App extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
-			compliments: [
-				{
-					id: 1,
-					body: "You’re cute.",
-				},
-				{
-					id: 2,
-					body: "You’re also p smart",
-				}
-			],
+			compliments: [],
 		}
+
+		this.loadItem('compliments', (data) => {
+			if (data === null) {
+				this.loadInitialCompliments()
+			}
+		})
+	}
+
+	getKey(key) {
+		return "@Curlew:" + key
+	}
+
+	loadItem(key, cb) {
+		AsyncStorage.getItem(this.getKey(key))
+			.then((data) => {
+				if (data !== null) {
+					this.setState({
+						[key]: JSON.parse(data),
+					})
+				}
+
+				cb(data)
+			})
+	}
+
+	saveItem(key, value) {
+		AsyncStorage.setItem(
+			this.getKey(key),
+			JSON.stringify(value),
+		)
+
+		this.setState({
+			[key]: value,
+		})
+	}
+
+	loadInitialCompliments() {
+		compliments = StarterPacks.reduce((acc, pack) => {
+			return acc.concat(pack.compliments.map(compliment => {
+				return {
+					...compliment,
+					pack: pack.name,
+					status: 'enabled',
+				}
+			}))
+		}, [])
+
+		this.saveItem('compliments', compliments)
 	}
 
 	handleRenderScene(route, navigator) {
