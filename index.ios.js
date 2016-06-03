@@ -57,6 +57,16 @@ Views.manage = function({ changeView }) {
 	)
 }
 
+Views.settings = function({ changeView }) {
+	return (
+		<View style={styles.container}>
+			<TouchableHighlight onPress={changeView.bind(null, 'home')}>
+				<Text>Back</Text>
+			</TouchableHighlight>
+		</View>
+	)
+}
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
