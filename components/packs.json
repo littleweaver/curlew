@@ -17,5 +17,44 @@
         "author": null
       }
     ]
+  },
+  {
+    "name": "Firefly Quotes",
+    "status": "enabled",
+    "explicit": false,
+    "compliments": [
+      {
+        "body": "Time for some thrilling heroics.",
+        "author": "Jayne Cobb"
+      },
+      {
+        "body": "Shepherd Book once said to me, \"If you can't do something smart, do something right.\"",
+        "author": "Jayne Cobb"
+      },
+      {
+        "body": "No power in the 'verse can stop me.",
+        "author": "River Tam"
+      },
+      {
+        "body": "Still flyin'.",
+        "author": "Malcolm Reynolds"
+      },
+      {
+        "body": "We're not gonna die. We can't die, Bendis. You know why? Because we are so...very...pretty. We are just too pretty for God to let us die.",
+        "author": "Malcolm Reynolds"
+      },
+      {
+        "body": "We have done the impossible, and that makes us mighty.",
+        "author": "Malcolm Reynolds"
+      },
+      {
+        "body": "I brought you some supper but if you'd prefer a lecture, I've a few very catchy ones prepped...sin and hellfire... one has lepers.",
+        "author": "Shepard Book"
+      },
+      {
+        "body": "It's a real burn, being right so often.",
+        "author": "Malcolm Reynolds"
+      }
+    ]
   }
 ]
