@@ -13,28 +13,33 @@ class Home extends Component {
 		super(props)
 
 		this.state = {
-			compliment: this.pickCompliment(props.compliments),
+			compliment: this.getRandomCompliment(props.compliments),
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log(this.state)
 		if (this.state.compliment) {
 			return
 		}
 
 		this.setState({
-			compliment: this.pickCompliment(nextProps.compliments),
+			compliment: this.getRandomCompliment(nextProps.compliments),
 		})
 	}
 
-	pickCompliment(compliments) {
+	getRandomCompliment(compliments) {
 		if (compliments.length === 0) {
 			return null
 		}
 
 		const index = Math.floor(Math.random() * compliments.length)
 		return compliments[index]
+	}
+
+	pickCompliment() {
+		this.setState({
+			compliment: this.getRandomCompliment(this.props.compliments)
+		})
 	}
 
 	render() {
