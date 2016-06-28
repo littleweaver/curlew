@@ -18,6 +18,7 @@ class Home extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
+		console.log(this.state)
 		if (this.state.compliment) {
 			return
 		}
