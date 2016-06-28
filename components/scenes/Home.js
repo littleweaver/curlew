@@ -13,7 +13,7 @@ class Home extends Component {
 		super(props)
 
 		this.state = {
-			compliment: null,
+			compliment: this.pickCompliment(props.compliments),
 		}
 	}
 
@@ -22,21 +22,18 @@ class Home extends Component {
 			return
 		}
 
-		this.pickCompliment(nextProps.compliments)
+		this.setState({
+			compliment: this.pickCompliment(nextProps.compliments),
+		})
 	}
 
 	pickCompliment(compliments) {
-		let compliment
-		if (compliments.length > 0) {
-			const index = Math.floor(Math.random() * compliments.length)
-			compliment = compliments[index]
-		} else {
-			compliment = null
+		if (compliments.length === 0) {
+			return null
 		}
 
-		this.setState({
-			compliment: compliment,
-		})
+		const index = Math.floor(Math.random() * compliments.length)
+		return compliments[index]
 	}
 
 	render() {
