@@ -9,7 +9,7 @@ import {
 import * as Routes from '../Routes'
 import Styles from '../Styles'
 
-class Manage extends Component {
+class ManageScene extends Component {
 	renderCompliment(compliment) {
 		return <Text key={compliment.body}>{compliment.body}</Text>
 	}
@@ -35,8 +35,8 @@ class Manage extends Component {
 	}
 }
 
-Manage.defaultProps = {
+ManageScene.defaultProps = {
 	compliments: [],
 }
 
-export default Manage
+export default ManageScene

@@ -1,10 +1,11 @@
 import 'babel-polyfill'
+
 import React, { Component } from 'react'
 import {
 	AppRegistry,
 } from 'react-native'
 
-import App from './components/App'
+import App from './react/App'
 
 class Curlew extends Component {
 	render() {

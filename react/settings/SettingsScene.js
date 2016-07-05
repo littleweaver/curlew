@@ -7,7 +7,7 @@ import {
 
 import Styles from '../Styles'
 
-export default function Settings({ changeView }) {
+export default function SettingsScene({ changeView }) {
 	return (
 		<View style={Styles.container}>
 			<TouchableHighlight onPress={changeView.bind(null, 'Home')}>

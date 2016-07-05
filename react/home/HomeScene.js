@@ -8,7 +8,7 @@ import {
 import * as Routes from '../Routes'
 import Styles from '../Styles'
 
-class Home extends Component {
+class HomeScene extends Component {
 	constructor(props) {
 		super(props)
 
@@ -78,8 +78,8 @@ class Home extends Component {
 	}
 }
 
-Home.defaultProps = {
+HomeScene.defaultProps = {
 	compliments: [],
 }
 
-export default Home
+export default HomeScene

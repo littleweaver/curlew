@@ -6,7 +6,7 @@ import {
 	Navigator,
 } from 'react-native'
 
-import * as Scenes from './scenes'
+import { Home } from './Routes'
 
 const StarterPacks = require('./packs.json')
 
@@ -68,26 +68,16 @@ class App extends Component {
 	}
 
 	handleRenderScene(route, navigator) {
-		const SceneComponent = Scenes[route.component]
-
-		const childProps = {}
-		if (['Manage', 'Home'].includes(route.component)) {
-			childProps.compliments = this.state.compliments
-		}
-
-		return <SceneComponent
-			key={route.component}
-			navigator={navigator}
-			{...childProps}
-		/>
+		return (
+			<route.component
+				navigator={navigator}
+				compliments={this.state.compliments}
+			/>
+		)
 	}
 
 	configureScene(route, routeStack) {
-		if (route.component === 'Home') {
-			return Navigator.SceneConfigs.VerticalDownSwipeJump
-		} else {
-			return Navigator.SceneConfigs.VerticalUpSwipeJump
-		}
+		return route.transition
 	}
 
 	addCompliment(compliment) {
@@ -121,7 +111,7 @@ class App extends Component {
 	render() {
 		return (
 			<Navigator
-				initialRoute={{ component: 'Home' }}
+				initialRoute={Home()}
 				renderScene={this.handleRenderScene.bind(this)}
 				configureScene={this.configureScene.bind(this)}
 			/>
