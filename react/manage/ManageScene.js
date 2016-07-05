@@ -9,19 +9,10 @@ import {
 import * as Routes from '../Routes'
 import Styles from '../Styles'
 
+import ComplimentListView from './containers/ComplimentListView'
+
+
 class ManageScene extends Component {
-	renderCompliment(compliment) {
-		return <Text key={compliment.body}>{compliment.body}</Text>
-	}
-
-	dataSourceFromCompliments(compliments) {
-		const ds = new ListView.DataSource({
-			rowHasChanged: (r1, r2) => r1 !== r2
-		})
-
-		return ds.cloneWithRows(compliments)
-	}
-
 	render() {
 		const { navigator, compliments } = this.props
 
@@ -30,6 +21,10 @@ class ManageScene extends Component {
 				<TouchableOpacity onPress={navigator.pop}>
 					<Text>Back</Text>
 				</TouchableOpacity>
+
+				<ComplimentListView
+					compliments={compliments}
+				/>
 			</View>
 		)
 	}
