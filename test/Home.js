@@ -3,7 +3,7 @@ import { Text, TouchableOpacity } from 'react-native'
 import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
-import Home from '../components/scenes/Home'
+import HomeScene from '../react/home/HomeScene'
 
 class MockNavigator {
 	constructor() {
@@ -15,7 +15,7 @@ class MockNavigator {
 	}
 }
 
-describe('<Home />', () => {
+describe('<HomeScene />', () => {
 	it('should render a compliment', () => {
 		const compliments = [
 			{
@@ -30,7 +30,7 @@ describe('<Home />', () => {
 		const navigator = new MockNavigator()
 
 		const wrapper = shallow(
-			<Home
+			<HomeScene
 				compliments={compliments}
 				navigator={navigator}
 			/>

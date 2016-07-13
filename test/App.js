@@ -3,7 +3,7 @@ import { Navigator } from 'react-native'
 import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
-import App from '../components/App'
+import App from '../react/App'
 
 describe('<App />', () => {
 	it('should render navigator', () => {
