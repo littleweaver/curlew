@@ -25,15 +25,29 @@ class HomeScene extends Component {
 			onStartShouldSetPanResponder: () => true,
 			onStartShouldSetPanResponderCapture: () => true,
 
+			onMoveShouldSetPanResponder: (evt, gestureState) => {
+				console.log('move should', evt, gestureState)
+				return Math.abs(gestureState.dx) > 5
+			},
+
+
+			onMoveShouldSetPanResponderCapture: (event, gestureState) => {
+				console.log('move should set', event, gestureState)
+				return Math.abs(gestureState.dx) > 5
+			},
+
 			onPanResponderMove: (evt, gestureState) => {
+				console.log(evt, gestureState)
 				if (this.state.swipeLeftHandled) {
 					return
 				}
 
 				const { width } = Dimensions.get('window')
-				const thresh = -1 * width / 2
+				const swipeThresholdPercentage = 0.1
+				const isSwiping = Math.abs(gestureState.dx / width) >= swipeThresholdPercentage
+				const isSwipingLeft = isSwiping && gestureState.dx < 0
 
-				if (gestureState.dx < thresh) {
+				if (isSwipingLeft) {
 					this.setState({
 						swipeLeftHandled: true,
 					})
@@ -82,14 +96,13 @@ class HomeScene extends Component {
 		return (
 			<View
 				style={Styles.container}
-				{...this._panResponder.panHandlers}
 			>
 				<Text>
 					Curlew
 				</Text>
 
 				{compliment && (
-					<View>
+					<View {...this._panResponder.panHandlers}>
 						<Text>
 							{compliment.body}
 						</Text>
