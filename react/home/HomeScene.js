@@ -22,7 +22,7 @@ class HomeScene extends Component {
 
 	componentWillMount() {
 		this._panResponder = PanResponder.create({
-			onStartShouldSetPanResponder: (evt, gestureState) => true,
+			onStartShouldSetPanResponder: () => true,
 
 			onStartShouldSetPanResponderCapture: (evt, gestureState) => {
 				return Math.abs(gestureState.dx) > 5
