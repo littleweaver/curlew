@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
 	View,
 	Text,
-	TouchableHighlight
+	TouchableHighlight,
 } from 'react-native'
 
 import Styles from '../Styles'

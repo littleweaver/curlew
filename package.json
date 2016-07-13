@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "lint": "eslint react/**/*.js",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "mocha --require react-native-mock/mock.js --compilers js:babel-core/register --recursive test/*.js"
   },
@@ -14,6 +15,11 @@
     "babel-preset-react-native": "^1.9.0",
     "chai": "^3.5.0",
     "enzyme": "^2.3.0",
+    "eslint": "^3.0.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.10.2",
+    "eslint-plugin-jsx-a11y": "^2.0.0",
+    "eslint-plugin-react": "^5.2.2",
     "mocha": "^2.5.3",
     "react": "15.0.2",
     "react-addons-test-utils": "15.0.2",

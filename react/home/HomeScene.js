@@ -4,7 +4,7 @@ import {
 	Dimensions,
 	Text,
 	TouchableOpacity,
-	PanResponder
+	PanResponder,
 } from 'react-native'
 
 import * as Routes from '../Routes'
@@ -26,27 +26,27 @@ class HomeScene extends Component {
 			onStartShouldSetPanResponderCapture: () => true,
 
 			onPanResponderMove: (evt, gestureState) => {
-				console.log(this.state.swipeLeftHandled)
 				if (this.state.swipeLeftHandled) {
 					return
 				}
 
-				const {height, width} = Dimensions.get('window')
+				const { width } = Dimensions.get('window')
 				const thresh = -1 * width / 2
 
-				if (gestureState.dx < (thresh)) {
+				if (gestureState.dx < thresh) {
 					this.setState({
-						swipeLeftHandled: true
+						swipeLeftHandled: true,
 					})
+
 					this.pickCompliment()
 				}
 			},
 
-			onPanResponderRelease: (evt, gestureState) => {
+			onPanResponderRelease: () => {
 				this.setState({
-					swipeLeftHandled: false
+					swipeLeftHandled: false,
 				})
-			}
+			},
 		})
 	}
 
@@ -71,7 +71,7 @@ class HomeScene extends Component {
 
 	pickCompliment() {
 		this.setState({
-			compliment: this.getRandomCompliment(this.props.compliments)
+			compliment: this.getRandomCompliment(this.props.compliments),
 		})
 	}
 
@@ -80,7 +80,10 @@ class HomeScene extends Component {
 		const { compliment } = this.state
 
 		return (
-			<View style={Styles.container} {...this._panResponder.panHandlers}>
+			<View
+				style={Styles.container}
+				{...this._panResponder.panHandlers}
+			>
 				<Text>
 					Curlew
 				</Text>
