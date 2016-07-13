@@ -22,22 +22,13 @@ class HomeScene extends Component {
 
 	componentWillMount() {
 		this._panResponder = PanResponder.create({
-			onStartShouldSetPanResponder: () => true,
-			onStartShouldSetPanResponderCapture: () => true,
+			onStartShouldSetPanResponder: (evt, gestureState) => true,
 
-			onMoveShouldSetPanResponder: (evt, gestureState) => {
-				console.log('move should', evt, gestureState)
-				return Math.abs(gestureState.dx) > 5
-			},
-
-
-			onMoveShouldSetPanResponderCapture: (event, gestureState) => {
-				console.log('move should set', event, gestureState)
+			onStartShouldSetPanResponderCapture: (evt, gestureState) => {
 				return Math.abs(gestureState.dx) > 5
 			},
 
 			onPanResponderMove: (evt, gestureState) => {
-				console.log(evt, gestureState)
 				if (this.state.swipeLeftHandled) {
 					return
 				}
@@ -95,14 +86,14 @@ class HomeScene extends Component {
 
 		return (
 			<View
-				style={Styles.container}
+				{...this._panResponder.panHandlers} style={Styles.container}
 			>
 				<Text>
 					Curlew
 				</Text>
 
 				{compliment && (
-					<View {...this._panResponder.panHandlers}>
+					<View>
 						<Text>
 							{compliment.body}
 						</Text>
