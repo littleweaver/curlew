@@ -16,7 +16,9 @@ class HomeScene extends Component {
 
 		this.state = {
 			swipeLeftHandled: false,
-			compliment: this.getRandomCompliment(props.compliments),
+			swipeRightHandled: false,
+			currentCompliment: 0,
+			compliments: [this.getRandomCompliment(props.compliments)],
 		}
 	}
 
@@ -29,7 +31,7 @@ class HomeScene extends Component {
 			},
 
 			onPanResponderMove: (evt, gestureState) => {
-				if (this.state.swipeLeftHandled) {
+				if (this.state.swipeLeftHandled || this.state.swipeRightHandled) {
 					return
 				}
 
@@ -37,31 +39,44 @@ class HomeScene extends Component {
 				const swipeThresholdPercentage = 0.1
 				const isSwiping = Math.abs(gestureState.dx / width) >= swipeThresholdPercentage
 				const isSwipingLeft = isSwiping && gestureState.dx < 0
+				const isSwipingRight = isSwiping && gestureState.dx > 0
 
 				if (isSwipingLeft) {
 					this.setState({
 						swipeLeftHandled: true,
 					})
+					if (this.state.currentCompliment === 0) {
+						this.pickCompliment()
+					} else {
+						this.forwardOneCompliment()
+					}
+				}
 
-					this.pickCompliment()
+				if (isSwipingRight) {
+					this.setState({
+						swipeRightHandled: true,
+					})
+
+					this.backOneCompliment()
 				}
 			},
 
 			onPanResponderRelease: () => {
 				this.setState({
 					swipeLeftHandled: false,
+					swipeRightHandled: false,
 				})
 			},
 		})
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (this.state.compliment) {
+		if (this.state.compliments[0]) {
 			return
 		}
 
 		this.setState({
-			compliment: this.getRandomCompliment(nextProps.compliments),
+			compliments: [this.getRandomCompliment(nextProps.compliments)],
 		})
 	}
 
@@ -75,14 +90,29 @@ class HomeScene extends Component {
 	}
 
 	pickCompliment() {
+		const newCompliment = this.getRandomCompliment(this.props.compliments)
 		this.setState({
-			compliment: this.getRandomCompliment(this.props.compliments),
+			compliments: [newCompliment, ...this.state.compliments],
+		})
+	}
+
+	backOneCompliment() {
+		this.setState({
+			currentCompliment: Math.min(this.state.currentCompliment + 1, this.state.compliments.length - 1)
+		})
+	}
+
+	forwardOneCompliment() {
+		this.setState({
+			currentCompliment: Math.max(this.state.currentCompliment - 1, 0)
 		})
 	}
 
 	render() {
 		const { navigator, compliments } = this.props
-		const { compliment } = this.state
+		const complimentHistory = this.state.compliments
+		const { currentCompliment } = this.state
+		const compliment = complimentHistory[currentCompliment]
 
 		return (
 			<View
