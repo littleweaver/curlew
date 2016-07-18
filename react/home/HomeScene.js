@@ -98,13 +98,14 @@ class HomeScene extends Component {
 
 	backOneCompliment() {
 		this.setState({
-			currentCompliment: Math.min(this.state.currentCompliment + 1, this.state.compliments.length - 1)
+			currentCompliment: Math.min(this.state.currentCompliment + 1,
+										this.state.compliments.length - 1),
 		})
 	}
 
 	forwardOneCompliment() {
 		this.setState({
-			currentCompliment: Math.max(this.state.currentCompliment - 1, 0)
+			currentCompliment: Math.max(this.state.currentCompliment - 1, 0),
 		})
 	}
 
