@@ -7,6 +7,7 @@ import {
 
 import Styles from '../Styles'
 import ComplimentListView from './containers/ComplimentListView'
+import ComplimentForm from './containers/ComplimentForm'
 
 
 function ManageScene({ navigator, compliments }) {
@@ -15,7 +16,7 @@ function ManageScene({ navigator, compliments }) {
 			<TouchableOpacity onPress={navigator.pop}>
 				<Text>Back</Text>
 			</TouchableOpacity>
-
+			<ComplimentForm />
 			<ComplimentListView
 				compliments={compliments}
 			/>
